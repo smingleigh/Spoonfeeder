@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/smingleigh/Spoonfeeder#readme",
   "dependencies": {
+    "angular": "^1.6.8",
+    "angular-route": "^1.6.8",
+    "firebase": "^4.8.1",
     "twit": "^2.2.9"
   }
 }
