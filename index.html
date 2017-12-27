@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Spoonful</title>
+</head>
+
+<body ng-app="Spoonful">
+	<main>
+		<div ng-view></div>
+	</main>
+
+	<footer>
+		<div class="footer-copyright">
+      © 2017 The Fun Committee
+    </div>
+	</footer>
+
+<!-- 3rd Party JS -->
+<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+<script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
+<script type="text/javascript" src="node_modules/firebase/firebase.js"></script>
+
+<script type="text/javascript" src="app/controllers/FeedCtrl.js"></script>
+<script type="text/javascript" src="app/factories/TwitterFactory.js"></script>
+<script type="text/javascript" src="app/app.js"></script>
+
+</body>
+</html>

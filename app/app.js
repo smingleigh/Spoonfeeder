@@ -1,0 +1,1 @@
+const app = angular.module("Spoonful", ["ngRoute"]);
