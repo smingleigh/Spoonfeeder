@@ -1,0 +1,22 @@
+{
+  "name": "spoonful",
+  "version": "1.0.0",
+  "description": "spoons and twitter or something",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smingleigh/Spoonfeeder.git"
+  },
+  "author": "Eliza and Smingleigh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smingleigh/Spoonfeeder/issues"
+  },
+  "homepage": "https://github.com/smingleigh/Spoonfeeder#readme",
+  "dependencies": {
+    "twit": "^2.2.9"
+  }
+}
