@@ -4,11 +4,11 @@ const dotenv = require('dotenv').load();
 
 const app = express();
 let twitterCredentials = {
-    consumer_key: process.env.consumer_key,
-    consumer_secret: process.env.consumer_secret,
-    access_token: process.env.access_token,
-    access_token_secret: process.env.access_token_secret,
-    timeout_ms: process.env.timeout_ms
+    consumer_key: process.env.twconsumer_key,
+    consumer_secret: process.env.twconsumer_secret,
+    access_token: process.env.twaccess_token,
+    access_token_secret: process.env.twaccess_token_secret,
+    timeout_ms: process.env.twtimeout_ms
 };
 
 var twitter = new twit(twitterCredentials);
