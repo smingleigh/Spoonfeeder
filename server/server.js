@@ -18,4 +18,4 @@ console.log('Starting Spoonful server...');
 
 console.log('Serving client from', path.join(__dirname, '../client'));
 app.listen(process.env.PORT || 5000);
-console.log('Spoonful started on http://localhost:' + process.env.PORT);
+console.log('Spoonful started on http://localhost:' + process.env.PORT, 'at', new Date());
