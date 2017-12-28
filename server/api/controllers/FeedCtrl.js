@@ -21,7 +21,10 @@ exports.feed = function(req, res) {
 
 exports.test = function(req, res) {
     console.log(req.method, req.path, 'serving up a heaping spoon of static data to', req.hostname, req.ip);
-    res.send(require('./testdata').testdata);
+    res.send(require('./testdata').testdata.map((obj) => {
+        obj.spoons = 3;
+        return obj;
+    }));
 };
 
 console.log('Set up FeedCtrl');
