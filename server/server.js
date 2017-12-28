@@ -6,10 +6,15 @@ const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
 const routes = require('./api/routes/routes');
-routes(app);
 
 app.use(express.static(path.join(__dirname, '../client')));
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
+routes(app);
 console.log('Starting Spoonful server...');
 // app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 // app.use(bodyParser.json());                                     // parse application/json

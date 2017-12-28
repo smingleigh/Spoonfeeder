@@ -1,8 +1,21 @@
-<div ng-repeat="item in tweets">
-    <div class="row">
-        <div class="col md6">@{{item.user.screen_name}} - {{item.user.name}}</div>
+<div class="row">
+    <div class="col m3">
+        I AM A SENSIBLE TWITTER USER
     </div>
-    <div class="row">
-        <div class="col md12">{{item.full_text}}</div>
+    <div class="col m6">
+        <div ng-repeat="item in tweets">
+            <div class="row">
+                <div class="col m2">
+                    <img src="{{item.user.profile_image_url}}">
+                </div>
+                <div class="col m6">@{{item.user.screen_name}} - {{item.user.name}}</div>
+            </div>
+            <div class="row">
+                <div class="col m12">{{item.full_text}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col m3">
+        © 2017 The Fun Committee
     </div>
 </div>
