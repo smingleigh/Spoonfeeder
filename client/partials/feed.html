@@ -1,4 +1,8 @@
 <div ng-repeat="item in tweets">
-    <div>@{{item.user.screen_name}} - {{item.user.name}}</div>
-    <div>{{item.full_text}}</div>
+    <div class="row">
+        <div class="col md6">@{{item.user.screen_name}} - {{item.user.name}}</div>
+    </div>
+    <div class="row">
+        <div class="col md12">{{item.full_text}}</div>
+    </div>
 </div>

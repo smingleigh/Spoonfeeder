@@ -1,8 +1,9 @@
 app.factory("TwitterFactory", function($q, $http){
     const getTweets = () => {
         return $q( (resolve, reject) => {
-            $http.get('/twitter')
+            $http.get('http://localhost:5000/feed')
                 .then(tweets =>{
+                    console.log(tweets.data);
                     resolve(tweets.data);
                 })
                 .catch(error => {
