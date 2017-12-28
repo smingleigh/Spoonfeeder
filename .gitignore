@@ -1,3 +1,4 @@
+exclude/
 Exclude/
 node_modules/
 server/.env
