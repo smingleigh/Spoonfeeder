@@ -14,7 +14,9 @@ let twitter = new twit(twitterCredentials, options);
 exports.feed = function(req, res) {
     console.log(req.method, req.path, 'serving up a heaping spoon to', req.hostname, req.ip);
     let tweets = twitter.get('statuses/home_timeline', options, (err, tweeties) => {return tweeties});
-    res.send(tweets);
+    tweets.then( result => {
+        res.send(result.data);
+    });
 };
 
 exports.test = function(req, res) {
