@@ -8,18 +8,14 @@
 
 
 <body ng-app="Spoonful">
-	<div ng-include="'partials/nav.html'"></div>
+	<div ng-controller="NavCtrl">
+		<div ng-include="'partials/nav.html'"></div>
+	</div>
 	<main>
 		<div class="container">
 			<div ng-view></div>
 		</div>
 	</main>
-
-	<footer>
-		<div class="footer-copyright">
-			© 2017 The Fun Committee
-		</div>
-	</footer>
 
 <!-- 3rd Party JS -->
 <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
@@ -28,6 +24,7 @@
 <script type="text/javascript" src="../node_modules/angular-route/angular-route.min.js"></script>
 <script type="text/javascript" src="../node_modules/firebase/firebase.js"></script>
 <script type="text/javascript" src="app/app.js"></script>
+<script type="text/javascript" src="app/controllers/NavCtrl.js"></script>
 <script type="text/javascript" src="app/controllers/FeedCtrl.js"></script>
 <script type="text/javascript" src="app/factories/TwitterFactory.js"></script>
 

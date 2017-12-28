@@ -1,3 +1,12 @@
 body {
     background-color: #f6f6f6
 }
+
+.profileBanner {
+    background-size: 100%;
+}
+
+.userImage {
+    padding-top: 55px;
+    margin-bottom: 10px;
+}
