@@ -20,5 +20,8 @@ exports.feed = function(req, res) {
 };
 
 exports.test = function(req, res) {
-    console.log(req.method, req.path, 'serving up a heaping spoon to', req.hostname, req.ip);
+    console.log(req.method, req.path, 'serving up a heaping spoon of static data to', req.hostname, req.ip);
+    res.send(require('./testdata').testdata);
 };
+
+console.log('Set up FeedCtrl');
