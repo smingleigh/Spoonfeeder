@@ -7,3 +7,12 @@ app.config($routeProvider => {
             controller: "FeedCtrl"
         });
 });
+
+app.filter('spoonFilter', () => {
+    return (items, spoons) => {
+        return items.filter(item => {
+            if (item.spoons <= spoons)
+                return item;
+        });
+    }
+});

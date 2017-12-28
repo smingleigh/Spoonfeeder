@@ -12,5 +12,18 @@ app.factory("TwitterFactory", function($q, $http){
         });
     }
 
-    return {getTweets};
+    const getCurrentUserTwitterProfile = () => {
+        return $q( (resolve, reject) => {
+            $http.get('http://localhost:5000/user')
+                .then(user =>{
+                    console.log(user.data);
+                    resolve(user.data);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    }
+
+    return {getTweets, getCurrentUserTwitterProfile};
 });
