@@ -1,7 +1,7 @@
 {
   "name": "spoonful",
   "version": "1.0.0",
-  "description": "spoons and twitter or something",
+  "description": "a twitter client that won't overload you",
   "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/smingleigh/Spoonfeeder.git"
   },
-  "author": "Eliza and Smingleigh",
+  "author": "The Fun Committee",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/smingleigh/Spoonfeeder/issues"
