@@ -1,6 +1,7 @@
 module.exports = function(app) {
     var feed = require('../controllers/FeedCtrl');
     var spoons = require('../controllers/SpoonsCtrl');
+    var user = require('../controllers/TwitterUserCtrl');
 
     // Routes
     app.route('/feed')
@@ -9,8 +10,11 @@ module.exports = function(app) {
     app.route('/test')
         .get(feed.test);
 
-    app.route('/spoons')
-        .get(spoons.update);
+    app.route('/dump')
+        .get(spoons.dump);
+
+    app.route('/user')
+        .get(user.owner);
 
     app.use(function(req, res) {
         console.log('Serving up a spoonful of 404 disappointment for', req.hostname, req.ip);
