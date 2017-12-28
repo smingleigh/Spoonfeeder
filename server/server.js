@@ -1,7 +1,6 @@
 console.log('Initializing...');
 const dotenv = require('dotenv').load();
 const express = require('express');
-const twit = require('twit');
 const firebase = require('firebase');
 const bodyParser = require('body-parser');
 const app = express();
@@ -20,8 +19,3 @@ console.log('Starting Spoonful server...');
 console.log('Serving client from', path.join(__dirname, '../client'));
 app.listen(process.env.PORT || 5000);
 console.log('Spoonful started on http://localhost:' + process.env.PORT);
-
-app.get('/', (req, res) => {
-    res.send(thing);
-    console.log("Delivering client to", req.ip);
-});
