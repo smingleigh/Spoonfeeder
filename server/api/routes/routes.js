@@ -10,11 +10,11 @@ module.exports = function(app) {
     app.route('/test')
         .get(feed.test);
 
-    app.route('/dump')
-        .get(spoons.dump);
-
     app.route('/user')
         .get(user.owner);
+
+    app.route('/follows')
+        .get(user.follows);
 
     app.use(function(req, res) {
         console.log('Serving up a spoonful of 404 disappointment for', req.hostname, req.ip);

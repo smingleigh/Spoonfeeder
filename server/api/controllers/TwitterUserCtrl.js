@@ -14,7 +14,14 @@ let twitter = new twit(twitterCredentials, options);
 
 exports.owner = function(req, res) { // Hardcoded to @Smingleigh
     let tweets = twitter.get('users/show', options, (err, tweeties) => {return tweeties});
-    tweets.then( result => {
+    tweets.then(result => {
         res.send(result.data);
+    });
+}
+
+exports.follows = function(req, res) { // Also hardcoded to Smingleigh
+    let followedaccounts = twitter.get('friends/list', options, (err, followers) => {return followers});
+    followedaccounts.then(result => {
+        res.send(result.data.users);
     });
 }
