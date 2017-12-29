@@ -1,19 +1,16 @@
-let server = require('../../server');
+const firebase = require('../service/firebase');
+const twitter = require('../service/twitter');
 
 const userId = 382737246;
 
-exports.feed = function(req, res) {
+exports.feed = async (req, res) {
     console.log(req.method, req.path, 'serving up a heaping spoon to', req.hostname, req.ip);
-    let tweets = server.twitter.get('statuses/home_timeline', {tweet_mode: 'extended'}, (err, tweeties) => {return tweeties});
-    let spoons = server.db.collection('user').doc(userId.toString()).get();
-    Promise.all([tweets, spoons]).then(results => {
-        let accounts = results[1].data().accounts;
-        console.log('Found spoons list for', userId, '(' + Object.keys(accounts).length + ' spoons records)');
-        res.send(results[0].data.map(tweet => {
-            tweet.spoons = accounts[tweet.user.id.toString()] || 3;
-            return tweet;
-        }));
-    });
+    let tweets = await twitter.asyncget();
+    let thespoons = (await firebase.spoons(userId)).data().accounts;
+    res.send(tweets.map(tweet => {
+        tweet.spoons = thespoons[tweet.user.id.toString()] || 3;
+        return tweet;
+    }));
 };
 
 exports.test = function(req, res) {
