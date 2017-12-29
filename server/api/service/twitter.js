@@ -8,11 +8,10 @@ const twit = twitter({
     access_token_secret: process.env.twaccess_token_secret,
     timeout_ms: process.env.twtimeout_ms
 }, options);
-console.log('twitter');
 module.exports.twit = twit;
 
- asyncget = async function () {
-    return await twit.get('statuses/home_timeline', {tweet_mode: 'extended'}, (err, tweeties) => {return tweeties});
+ asyncget = async function (endpoint, options) {
+    return await twit.get(endpoint, options, (err, tweeties) => {return tweeties});
 }
 
 module.exports.asyncget = asyncget;
