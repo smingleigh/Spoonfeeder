@@ -15,3 +15,9 @@ exports.putspoon = function(req, res) {
         model, 
         { merge: true });
 };
+
+exports.getspoon = function(req, res) {
+    console.log(req.method, req.path, 'serving up a heaping spoon to', req.hostname, req.ip);
+    let spoons = server.db.collection('user').doc(user.toString()).get();
+    spoons.then(result => res.send(result.data()));
+};
