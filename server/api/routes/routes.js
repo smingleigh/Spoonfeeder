@@ -13,11 +13,17 @@ module.exports = function(app) {
     app.route('/user')
         .get(user.owner);
 
-    app.route('/follows')
-        .get(user.follows);
+    app.route('/eliza')
+        .get(user.eliza);
+
+    app.route('/smingleigh')
+        .get(user.smingleigh);
+
+    app.route('/spoons')
+        .put(spoons.putspoon);
 
     app.use(function(req, res) {
-        console.log('Serving up a spoonful of 404 disappointment for', req.hostname, req.ip);
+        console.log(req.method, req.path, 'serving up an empty spoon to', req.hostname, req.ip);
         res.status(404).send('<h1>Do not try to reach ' + req.url + ', for that is impossible. Instead, try to realize the truth... there is no spoon.</h1>');
     });
 };

@@ -1,27 +1,27 @@
-const twit = require('twit');
-
-let twitterCredentials = {
-    consumer_key: process.env.twconsumer_key,
-    consumer_secret: process.env.twconsumer_secret,
-    access_token: process.env.twaccess_token,
-    access_token_secret: process.env.twaccess_token_secret,
-    timeout_ms: process.env.twtimeout_ms
-};
-
+const server = require('../../server');
 let options = { user_id: 382737246 };
 
-let twitter = new twit(twitterCredentials, options);
-
 exports.owner = function(req, res) { // Hardcoded to @Smingleigh
+    console.log(req.method, req.path, 'serving up a heaping spoon to', req.hostname, req.ip);
     let tweets = twitter.get('users/show', options, (err, tweeties) => {return tweeties});
     tweets.then(result => {
         res.send(result.data);
     });
 }
 
-exports.follows = function(req, res) { // Also hardcoded to Smingleigh
-    let followedaccounts = twitter.get('friends/list', options, (err, followers) => {return followers});
-    followedaccounts.then(result => {
-        res.send(result.data.users);
+exports.eliza = function(req, res) {
+    console.log(req.method, req.path, 'serving up a heaping spoon to', req.hostname, req.ip);
+    let data = server.twitter.get('users/show', { screen_name: "@elizawmeeks" }, (err, usr) => {return usr});
+    data.then(result => {
+        res.send(result);
     });
 }
+
+exports.smingleigh = function(req, res) {
+    console.log(req.method, req.path, 'serving up a heaping spoon to', req.hostname, req.ip);
+    let data = server.twitter.get('users/show', { screen_name: "@smingleigh" }, (err, usr) => {return usr});
+    data.then(result => {
+        res.send(result);
+    });
+}
+
