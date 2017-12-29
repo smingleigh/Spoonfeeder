@@ -3,12 +3,14 @@ const twitter = require('../service/twitter');
 
 const userId = 382737246;
 
-exports.feed = async (req, res) {
+exports.feed = async function(req, res) {
     console.log(req.method, req.path, 'serving up a heaping spoon to', req.hostname, req.ip);
-    let tweets = await twitter.asyncget();
-    let thespoons = (await firebase.spoons(userId)).data().accounts;
+    let results = await Promise.all([twitter.asyncget('statuses/home_timeline', {tweet_mode: 'extended'}),
+                                     firebase.spoons(userId)]);
+    let spoons = results[1].data().accounts;
+    let tweets = results[0].data;
     res.send(tweets.map(tweet => {
-        tweet.spoons = thespoons[tweet.user.id.toString()] || 3;
+        tweet.spoons = spoons[tweet.user.id.toString()] || 3;
         return tweet;
     }));
 };

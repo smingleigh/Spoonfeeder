@@ -12,7 +12,7 @@ console.log('twitter');
 module.exports.twit = twit;
 
  asyncget = async function () {
-    return await util.promisify(twit.get)('statuses_hometimeline', {tweet_mode: 'extended'}).then(tweeties => { return tweeties; });
+    return await twit.get('statuses/home_timeline', {tweet_mode: 'extended'}, (err, tweeties) => {return tweeties});
 }
 
 module.exports.asyncget = asyncget;
