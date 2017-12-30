@@ -55,6 +55,24 @@ const evaluations = [
     keywords
 ];
 
+let _makespoonsmodel = function (identifier, spoons, userid, modeltype) {
+    let model = { 'user': userid };
+    let update = {};
+    update[identifier] = spoons;
+    model[modeltype] = update;
+    return model;
+};
+
+let updateaccountspoons = function(accountid, spoons, userid) {
+    putmodel(_makespoonsmodel(accountid, spoons, userid, 'accounts'));
+};
+
+let updatekeywordspoons = function(keyword, spoons, userid) {
+    putmodel(_makespoonsmodel(keyword, spoons, user, 'keywords'))
+};
+
 module.exports = {
-    spoonify
+    spoonify,
+    updateaccountspoons,
+    updatekeywordspoons
 };

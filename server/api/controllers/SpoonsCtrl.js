@@ -1,19 +1,14 @@
-const firebase = require('../dal/firebase').db;
+const spoons = require('../service/spoons');
 let user = '382737246';
 
-exports.putspoon = function(req, res) {
-    console.log(req.method, req.path, 'serving up a heaping spoon to', req.hostname, req.ip);
-    let model = {};
-    let accountmodel = {};
-    let spoons = req.body.spoons;
-    let account = req.body.account;
-    model.user = user;
-    accountmodel[account] = spoons;
-    model.accounts = accountmodel;
-    console.log(model);
-    firebase.collection('user').doc(user).set(
-        model, 
-        { merge: true });
+exports.putaccountspoon = function(req, res) {
+    console.log(req.method, req.path, 'swallowing a heaping spoon from', req.hostname, req.ip);
+    spoons.updateaccountspoons(req.body.accounts, req.body.spoons, user);
+};
+
+exports.putkeywordspoon = function(req, res) {
+    console.log(req.method, req.path, 'swallowing a heaping spoon from', req.hostname, req.ip);
+    spoons.updatekeywordspoons(req.body.accounts, req.body.spoons, user);
 };
 
 exports.getspoon = function(req, res) {

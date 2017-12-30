@@ -17,8 +17,13 @@ module.exports = function(app) {
         .get(user.smingleigh);
 
     app.route('/spoons')
-        .put(spoons.putspoon)
         .get(spoons.getspoon);
+
+    app.route('/spoons/accounts')
+        .put(spoons.putaccountspoon);
+
+    app.route('/spoons/keywords')
+        .put(spoons.putkeywordspoon);
 
     app.use(function(req, res) {
         console.log(req.method, req.path, 'serving up an empty spoon to', req.hostname, req.ip);

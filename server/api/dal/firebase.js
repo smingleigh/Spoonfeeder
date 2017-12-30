@@ -20,8 +20,20 @@ let spoons = async function(userId) {
     return result.data();
 };
 
+let putmodel = function(model) {
+    db.collection(
+        'user'
+    ).doc(
+        model.user.toString()
+    ).set(
+        model, 
+        { merge: true }
+    );
+};
+
 module.exports = {
-    spoons, 
+    spoons,
+    putmodel, 
     firebase  
 };
 

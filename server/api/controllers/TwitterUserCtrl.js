@@ -1,4 +1,3 @@
-const server = require('../../server');
 const twitter = require('../service/twitter');
 let userId = 382737246; // HARDCODED
 
