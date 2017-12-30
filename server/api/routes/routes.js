@@ -7,9 +7,6 @@ module.exports = function(app) {
     app.route('/feed')
         .get(feed.feed);
 
-    app.route('/test')
-        .get(feed.test);
-
     app.route('/user')
         .get(user.owner);
 

@@ -12,11 +12,12 @@ let firebase = db.firestore();
 
 
 let spoons = async function(userId) {
-    return await firebase.collection(
+    let result = await firebase.collection(
         'user'
     ).doc(
         userId.toString()
     ).get();
+    return result.data();
 };
 
 module.exports = {

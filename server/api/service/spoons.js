@@ -1,16 +1,38 @@
+const db = require('../dal/firebase');
+
 const defaultspoons = 3;
 
+let spoonify = async function (tweets, userId) {
+    console.log('spoonifying!');
+    if (tweets.constructor !== Array) {
+        tweets = [tweets];
+    };
+    let spoons = await db.spoons(userId);
+    return tweets.map(tweet => { 
+        tweet.spoons = _spoonify(tweet, spoons); return tweet; 
+    });
+};
 
-module.exports.spoonify = function (tweet, spoons) { 
-    let result = evaluations.map(e => e(tweet, spoons)).filter(e => e != null);
+let _spoonify = function (tweet, spoons) {
+    let result = evaluations.map(
+        e => e(tweet, spoons)
+    ).filter(
+        e => e
+    );
+
     if (result.length) {
-        return Math.max(result);
+        let res = Math.max(result);
+        return res;
+    } else {
+        return defaultspoons;
     }
-    return defaultspoons;
 };
 
 let account = function (tweet, spoons) {
-    return spoons.accounts[tweet.user.id];
+    let accounts = [tweet.user.id].concat(tweet.entities.user_mentions.map(user => user.id));
+    return Math.max(accounts.map(
+        account => { return spoons.accounts[account]; }
+    ));
 };
 
 let keywords = function (tweet, spoons) {
@@ -18,11 +40,14 @@ let keywords = function (tweet, spoons) {
     let text = tweet.full_text.toLowerCase();
     if (kwords.find(kword => text.includes(kword)))
     {
-        return kwords.map(word => { return { 'word': word, 'spoons': spoons.keywords[word] }; })
-                     .sort()
-                     .reverse()
-                     .find(word => text.includes(word.word))
-                     .spoons
+        return kwords.map(
+            kword => { return { 'word': kword, 'spoons': spoons.keywords[kword] }; }
+        ).sort(
+            kword => { return kword.spoons; }
+        ).reverse(
+        ).find(
+            kword => text.includes(kword.word)
+        ).spoons
     };
 };
 
@@ -30,3 +55,7 @@ const evaluations = [
     account,
     keywords
 ];
+
+module.exports = {
+    spoonify
+};
