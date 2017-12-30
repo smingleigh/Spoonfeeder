@@ -6,7 +6,7 @@ const userId = 382737246;
 
 let feed = async function(req, res) {
     console.log(req.method, req.path, 'serving up a heaping spoon to', req.hostname, req.ip);
-    let results = await Promise.all([twitter.asyncget('statuses/home_timeline', {tweet_mode: 'extended'}),
+    let results = await Promise.all([twitter.feed(),
                                      firebase.spoons(userId)]);
     let spoons = results[1].data();
     let tweets = results[0];

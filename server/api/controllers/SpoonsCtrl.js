@@ -5,7 +5,7 @@ exports.putspoon = function(req, res) {
     console.log(req.method, req.path, 'serving up a heaping spoon to', req.hostname, req.ip);
     let model = {};
     let accountmodel = {};
-    let spoons =req.body.spoons;
+    let spoons = req.body.spoons;
     let account = req.body.account;
     model.user = user;
     accountmodel[account] = spoons;
