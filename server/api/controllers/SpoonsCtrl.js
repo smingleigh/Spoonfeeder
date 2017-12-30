@@ -1,4 +1,4 @@
-const firebase = require('../service/firebase').firebase;
+const firebase = require('../dal/firebase').db;
 let user = '382737246';
 
 exports.putspoon = function(req, res) {
