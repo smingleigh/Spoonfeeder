@@ -3,7 +3,6 @@ const db = require('../dal/firebase');
 const defaultspoons = 3;
 
 let spoonify = async function (tweets, userId) {
-    console.log('spoonifying!');
     if (tweets.constructor !== Array) {
         tweets = [tweets];
     };
