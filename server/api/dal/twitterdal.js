@@ -1,4 +1,5 @@
 const twitter = require('twit');
+const chalk = require('chalk');
 
 const SIMULATE_TWITTER_API = false;
 
@@ -43,6 +44,36 @@ let userbyid = async function (userId) {
 let userbyname = async function (username) {
     return await get('users/show', { screen_name: username });
 };
+
+let follows = async function(userid) {
+    let result = await get('friends/ids', { user_id: userid });
+    return result.data.ids.map(e => e.toString());
+};
+
+let feedstream = async function(userid, ondata, onerror, ondisconnect) {
+    console.log(chalk.green('Beginning streaming', userid));
+    let followlist = await follows(userid);
+    let options = { follow: followlist };
+    let stream = twit.stream('statuses/filter', options);
+    stream.on('message', ondata);
+    stream.on('error', onerror);
+    stream.on('disconnect', msg => console.log(chalk.red(msg)));
+};
+
+// COMMENT THIS CALL OUT IF YOU DON'T WANT TO STREAM
+// SMINGLEIGH'S WHOLE FEED DIRECTLY INTO YOUR CONSOLE
+// FOR SOME REASON
+
+feedstream(382737246, tweet => {
+    console.log(chalk.yellow(tweet.user.screen_name, ':'), chalk.green(tweet.text));
+}, error => {
+    console.log(chalk.red(error));
+}, disconnect => {
+    console.log(chalk.orange('disconnected!'));
+    console.log(chalk.orange(disconnect));
+});
+
+// End experimental testing code
 
 module.exports = {
     feed,
