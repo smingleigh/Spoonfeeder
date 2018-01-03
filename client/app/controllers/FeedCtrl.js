@@ -9,13 +9,9 @@ app.controller("FeedCtrl", function($scope, TwitterFactory){
     $scope.getCurrentUserTwitterProfile = () => {
         TwitterFactory.getCurrentUserTwitterProfile()
             .then(response => {
+                console.log("user profile", response);
                 $scope.user = response;
             });
-    }
-    $scope.setSpoons = (spoonRate, userId) => {
-        console.log("I AM CHANGING");
-        console.log(spoonRate, "newspoonrating");
-        console.log(userId, "userId");
     }
 
     $scope.getTweets();
