@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col m3">
+        <!-- <div class="row">
+            <div class="col m12">
+                <img class="profileBanner" src="{{user.profile_banner_url}}" alt="profile banner">
+            </div>
+        </div> -->
+        <div class="row profileBanner" style="background:url({{user.profile_banner_url}}) no-repeat; background-size:100%">
+            <div class="userImage">
+                <div class="col m3 offset-m2 userImage">
+                    <img src="{{user.profile_image_url}}">
+                </div>
+                <div class="col m7">
+                    @{{user.screen_name}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="range-field">
+                <input id="userSpoons" name="userSpoons" type="range" ng-model="spoons" min="0" max="5" value="3">
+            </div>
+        </div>
+    </div>
+    <div class="col m9">
+        <div ng-repeat="item in tweets | spoonFilter:spoons">
+            <div class="row">
+                <div class="col m2">
+                    <img src="{{item.user.profile_image_url}}" alt="user profile picture from tweet feed">
+                </div>
+                <div class="col m8">
+                    <div class="row">
+                        <div class="col m12">
+                            @{{item.user.screen_name}} - {{item.user.name}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m12">{{item.full_text}}</div>
+                    </div>
+                </div>
+                <!-- <div class="col m2">
+                    <div class="range-field">
+                        <input name={{item.user.screen_name}} ng-model="newSpoonRating" type="range" min="1" max="5" ng-change="setSpoons(newSpoonRating, item.user.id)">
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col m3">
+        © 2017 The Fun Committee
+    </div> -->
+</div>
